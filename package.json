@@ -1,0 +1,15 @@
+{
+  "name": "iconv-lite-big5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "big5": "node --max-old-space-size=12000 ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "iconv-lite-umd": "^0.6.8"
+  }
+}
