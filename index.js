@@ -21,5 +21,5 @@ lineReader.on('line', function(line) {
 
 lineReader.on('close', function(){
     fs.unlinkSync(`${__dirname}/${path_raw}`)
-    console.log(`done: ${path_ori}`)
+    console.log(`finish: ${path_ori}`)
 });

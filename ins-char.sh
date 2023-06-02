@@ -4,6 +4,8 @@
 mode=${1:-0}
 # pre month or others
 dirName=${2}
+# ignore some file
+ignores=${3}
 
 if [[ $mode -eq '0' ]]; then
   echo 'use iconv-base (linux)'
@@ -17,7 +19,7 @@ for fileRaw in file/raw/*/*; do
     break
   fi
   if [[ $fileRaw != *.txt ]]; then
-    break
+    continue
   fi
   if [[ $fileRaw == *hth/ot_insurance.txt ]]; then
     fileRe=$(dirname $fileRaw)/ht_insurance.txt
@@ -34,7 +36,13 @@ for fileRaw in file/raw/*/*; do
   mkdir -p $dirOri
   fileOri=$dirOri/$(basename $fileRaw)
   rm -f $fileOri
-
+  # ignore files
+  if [[ $ignores != "" ]] && [[ "$(basename $fileRaw)" =~ ^($ignores)$ ]]; then
+      echo "ignore: $fileRaw"
+      mv $fileRaw $fileOri 
+      continue
+  fi
+  # start iconv
   if [[ $mode -eq '0' ]]; then
     ir=1
     { # try
@@ -45,7 +53,7 @@ for fileRaw in file/raw/*/*; do
     }
     if [[ $ir -eq 1 ]]; then
       # mv $fileRaw $dirBkp
-      echo "done: $fileOri"
+      echo "finish: $fileOri"
       rm $fileRaw
     fi
   else
