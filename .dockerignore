@@ -1,0 +1,13 @@
+
+.git
+.gitignore
+
+# vscode
+.vscode
+
+### Nodejs
+node_modules/
+
+# Related files
+**/*.zip
+**/*.txt
