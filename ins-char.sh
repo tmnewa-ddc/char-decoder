@@ -15,6 +15,9 @@ fi
 
 for fileRaw in file/raw/*/*; do
   if [ ! -f $fileRaw ]; then
+    if [ -d $fileRaw ]; then
+      continue
+    fi
     echo "there is no file..."
     break
   fi
