@@ -4,7 +4,7 @@
 # echo ""
 
 for fileRaw in file/raw/*; do
-  if [[ $fileRaw != *.zip ]]; then
+  if [[ $fileRaw != *.7z ]]; then
     continue
   fi
   if [ ! -f $fileRaw ]; then
@@ -17,7 +17,7 @@ for fileRaw in file/raw/*; do
     echo ""
   fi
   echo "unzip: "$fileRaw
-  if ! unzip -q -P "$password" $fileRaw -d file/raw/; then
+  if ! 7z x $fileRaw -o"file/raw/" -p"$password"; then
     echo "error..."
     continue
   fi
